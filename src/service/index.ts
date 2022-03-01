@@ -5,7 +5,7 @@ axios.defaults.baseURL = BASE_URL
 
 async function getUser(): Promise<any> {
   try {
-    const response = await axios.get('/get')
+    const response = await axios.get('/login')
     console.log(response)
   } catch (error) {
     console.error(error)

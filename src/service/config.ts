@@ -1,8 +1,8 @@
 let BASE_URL: string
 
 if (process.env.NODE_ENV === 'development') {
-  // BASE_URL = 'http://152.136.185.210:5000'
-  BASE_URL = 'http://httpbin.org/'
+  BASE_URL = 'http://152.136.185.210:5000'
+  // BASE_URL = 'http://httpbin.org/'
 } else if (process.env.NODE_ENV === 'production') {
   BASE_URL = 'http://152.136.185.210:5000'
 } else {

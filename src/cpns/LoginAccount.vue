@@ -21,11 +21,12 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
 import { ElForm } from 'element-plus'
+import localCache from '@/utils/cache'
 export default defineComponent({
   setup() {
     const account = reactive({
-      name: '',
-      password: ''
+      name: localCache.getCache('name') ?? '',
+      password: localCache.getCache('password') ?? ''
     })
     //引用form实例
     const formRef = ref<InstanceType<typeof ElForm>>()
@@ -42,10 +43,17 @@ export default defineComponent({
       ]
     }
     //处理登陆事件
-    const handleLogin = () => {
+    const handleLogin = (isKeepPass: boolean) => {
       formRef.value?.validate((valid) => {
         if (valid) {
-          console.log('正在登录')
+          //记住密码本地缓存
+          if (isKeepPass) {
+            localCache.setCache('name', account.name)
+            localCache.setCache('password', account.password)
+          } else {
+            localCache.delCache('name')
+            localCache.delCache('password')
+          }
         }
       })
     }

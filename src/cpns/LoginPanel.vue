@@ -34,7 +34,7 @@ export default defineComponent({
     //处理登陆事件
     const loginAccountRef = ref<InstanceType<typeof LoginAccount>>()
     const loginClick = () => {
-      loginAccountRef.value?.handleLogin()
+      loginAccountRef.value?.handleLogin(isKeepPassword.value)
     }
 
     return { loginAccountRef, loginClick, isKeepPassword }
